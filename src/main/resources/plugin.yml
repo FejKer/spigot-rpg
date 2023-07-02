@@ -2,3 +2,7 @@ name: spigot-rpg
 version: '${project.version}'
 main: me.omigo.spigotrpg.Spigot_rpg
 api-version: '1.20'
+commands:
+  roulette:
+    description: Check for items worth for roulette
+    usage: /<command>

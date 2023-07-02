@@ -2,7 +2,6 @@ package me.omigo.spigotrpg;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 
 public final class Spigot_rpg extends JavaPlugin {
@@ -15,6 +14,8 @@ public final class Spigot_rpg extends JavaPlugin {
         System.out.println("Hello world from Spigot-Rpg");
         System.out.println("Registering listener");
         getServer().getPluginManager().registerEvents(new EventListener(), this);
+        System.out.println("Registering commands");
+        this.getCommand("roulette").setExecutor(new RouletteCommand());
         saveDefaultConfig();
         try {
             databaseHandler.connectToDatabase(getConfig(), getDataFolder());
