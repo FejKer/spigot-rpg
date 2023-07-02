@@ -1,0 +1,4 @@
+name: spigot-rpg
+version: '${project.version}'
+main: me.omigo.spigotrpg.Spigot_rpg
+api-version: '1.20'
