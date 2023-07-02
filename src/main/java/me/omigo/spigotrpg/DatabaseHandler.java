@@ -1,10 +1,12 @@
 package me.omigo.spigotrpg;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.sql.*;
+import java.util.UUID;
 
 public class DatabaseHandler {
 
@@ -43,5 +45,30 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             System.out.println("Could not close database connection: " + e.getMessage());
         }
+    }
+
+    public void insertPlayerIntoDatabase(Player player) {
+        String query = "INSERT INTO players VALUES ( ?, ? )";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, String.valueOf(player.getUniqueId()));
+            pstmt.setString(2, player.getName());
+            pstmt.executeUpdate();
+            player.sendMessage("Zarejestrowano Cię do bazy danych.");
+        } catch (SQLException e) {
+            System.out.println("Could not check if player is in database: " + e.getMessage());
+        }
+    }
+
+    public boolean isPlayerInDatabase(UUID playerUuid) {
+        String query = "SELECT * FROM players WHERE uuid = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, playerUuid.toString());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.out.println("Could not check if player is in database: " + e.getMessage());
+        }
+        return false;
     }
 }

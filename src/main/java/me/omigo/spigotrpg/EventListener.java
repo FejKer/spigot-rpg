@@ -19,35 +19,10 @@ public class EventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) throws SQLException {
         Player player = event.getPlayer();
         event.setJoinMessage(ChatColor.GOLD + player.getName() + " dołączył do zabawy :D");
-        if (!isPlayerInDatabase(player.getUniqueId())) {
-            insertPlayerIntoDatabase(player);
+        if (!databaseHandler.isPlayerInDatabase(player.getUniqueId())) {
+            databaseHandler.insertPlayerIntoDatabase(player);
         } else {
             player.sendMessage("Witamy z powrotem.");
         }
-    }
-
-    private void insertPlayerIntoDatabase(Player player) {
-        String query = "INSERT INTO players VALUES ( ?, ? )";
-        try (PreparedStatement pstmt = databaseHandler.connection.prepareStatement(query)) {
-            pstmt.setString(1, String.valueOf(player.getUniqueId()));
-            pstmt.setString(2, player.getName());
-            pstmt.executeUpdate();
-            player.sendMessage("Zarejestrowano Cię do bazy danych.");
-        } catch (SQLException e) {
-            System.out.println("Could not check if player is in database: " + e.getMessage());
-        }
-    }
-
-    private boolean isPlayerInDatabase(UUID playerUuid) {
-        String query = "SELECT * FROM players WHERE uuid = ?";
-        try (PreparedStatement pstmt = databaseHandler.connection.prepareStatement(query)) {
-            pstmt.setString(1, playerUuid.toString());
-            try (ResultSet rs = pstmt.executeQuery()) {
-                return rs.next();
-            }
-        } catch (SQLException e) {
-            System.out.println("Could not check if player is in database: " + e.getMessage());
-        }
-        return false;
     }
 }
