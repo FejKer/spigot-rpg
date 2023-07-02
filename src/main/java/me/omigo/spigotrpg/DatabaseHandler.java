@@ -1,5 +1,6 @@
 package me.omigo.spigotrpg;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -11,21 +12,21 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DatabaseHandler {
-    public Map<String, Integer> itemValues = new HashMap<>();
+    public Map<Material, Integer> itemValues = new HashMap<>();
     public static DatabaseHandler instance = new DatabaseHandler();
     public Connection connection;
 
     private void populateHashMap() {
-        itemValues.put("DIAMOND", 500);
-        itemValues.put("IRON_INGOT", 150);
-        itemValues.put("GOLD_INGOT", 200);
-        itemValues.put("EMERALD", 350);
-        itemValues.put("COAL", 50);
-        itemValues.put("LAPIS_LAZULI", 100);
-        itemValues.put("REDSTONE", 80);
-        itemValues.put("NETHERITE_INGOT", 1000);
-        itemValues.put("QUARTZ", 120);
-        itemValues.put("OBSIDIAN", 300);
+        itemValues.put(Material.DIAMOND, 500);
+        itemValues.put(Material.IRON_INGOT, 150);
+        itemValues.put(Material.GOLD_INGOT, 200);
+        itemValues.put(Material.EMERALD, 350);
+        itemValues.put(Material.COAL, 50);
+        itemValues.put(Material.LAPIS_LAZULI, 100);
+        itemValues.put(Material.REDSTONE, 80);
+        itemValues.put(Material.NETHERITE_INGOT, 1000);
+        itemValues.put(Material.QUARTZ, 120);
+        itemValues.put(Material.OBSIDIAN, 300);
     }
 
     public void connectToDatabase(FileConfiguration config, File dataFolder) throws ClassNotFoundException {
