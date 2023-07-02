@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import java.util.Set;
 
 public class Roulette {
+    private Integer id;
     private Set<Player> playerSet;
     private Set<Item> itemSet;
 }

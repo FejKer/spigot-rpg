@@ -6,10 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class RouletteCommand implements CommandExecutor {
 
     private final DatabaseHandler databaseHandler = DatabaseHandler.instance;
@@ -33,21 +29,12 @@ public class RouletteCommand implements CommandExecutor {
         }
         return true;
     }
-        //todo ruletka, tracking progress i nagrody, daily challenge
+    //todo ruletka, tracking progress i nagrody, daily challenge
 
-        private void sendItemsWorthToPlayer (Player player){
-            try {
-                PreparedStatement preparedStatement = databaseHandler.connection.prepareStatement("SELECT * FROM items_worth");
-                ResultSet rs = preparedStatement.executeQuery();
-                System.out.println("After executing query");
-                while (rs.next()) {
-                    System.out.println(rs.getString("name"));
-                    System.out.println(rs.getInt("worth"));
-                    player.sendMessage("Item: " + rs.getString("name"));
-                    player.sendMessage("Worth: " + rs.getInt("worth"));
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+    private void sendItemsWorthToPlayer(Player player) {
+        for (String key : databaseHandler.itemValues.keySet()) {
+            player.sendMessage("Item: " + key);
+            player.sendMessage("Worth: " + databaseHandler.itemValues.get(key));
         }
     }
+}

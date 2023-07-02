@@ -1,6 +1,5 @@
 package me.omigo.spigotrpg;
 
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -12,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class DatabaseHandler {
-    Map<String, Integer> itemValues = new HashMap<>();
+    public Map<String, Integer> itemValues = new HashMap<>();
     public static DatabaseHandler instance = new DatabaseHandler();
     public Connection connection;
 
@@ -38,16 +37,6 @@ public class DatabaseHandler {
             try (Statement stmt = connection.createStatement()) {
                 stmt.execute("CREATE TABLE IF NOT EXISTS players (uuid VARCHAR(36), name VARCHAR(16))");
                 System.out.println("Created table players");
-                stmt.execute("CREATE TABLE IF NOT EXISTS items_worth (name VARCHAR(20), worth INT)");
-                System.out.println("Created table items_worth");
-                stmt.execute("TRUNCATE TABLE items_worth");
-                for (String item : itemValues.keySet()) {
-                    int worth = itemValues.get(item);
-                    stmt.execute("INSERT INTO items_worth (name, worth) VALUES ('" + item + "', " + worth + ")");
-                    System.out.println("Inserting into db: " + item + " " + worth);
-                }
-                System.out.println("Inserted item values into items_worth table");
-
                 stmt.execute("CREATE TABLE IF NOT EXISTS roulettes (id INT auto_increment)");
 
                 /*String selectAllQuery = "SELECT * FROM players";
