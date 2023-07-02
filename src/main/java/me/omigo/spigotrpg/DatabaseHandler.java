@@ -20,6 +20,15 @@ public class DatabaseHandler {
             try (Statement stmt = connection.createStatement()) {
                 stmt.execute("CREATE TABLE IF NOT EXISTS players (uuid VARCHAR(36), name VARCHAR(16))");
                 System.out.println("Created table");
+
+                /*String selectAllQuery = "SELECT * FROM players";
+                try (ResultSet rs = stmt.executeQuery(selectAllQuery)) {
+                    while (rs.next()) {
+                        String uuid = rs.getString("uuid");
+                        String name = rs.getString("name");
+                        System.out.println("Player UUID: " + uuid + ", Name: " + name);
+                    }
+                }*/
             }
         } catch (SQLException e) {
             System.out.println("Could connect to database " + e.getMessage());

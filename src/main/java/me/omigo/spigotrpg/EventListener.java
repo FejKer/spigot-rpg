@@ -1,5 +1,6 @@
 package me.omigo.spigotrpg;
 
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,9 +18,11 @@ public class EventListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) throws SQLException {
         Player player = event.getPlayer();
-        Bukkit.broadcastMessage(player.getName() + " dołączył do zabawy :D");
+        event.setJoinMessage(ChatColor.GOLD + player.getName() + " dołączył do zabawy :D");
         if (!isPlayerInDatabase(player.getUniqueId())) {
             insertPlayerIntoDatabase(player);
+        } else {
+            player.sendMessage("Witamy z powrotem.");
         }
     }
 
