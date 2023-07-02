@@ -1,5 +1,6 @@
-package me.omigo.spigotrpg;
+package me.omigo.spigotrpg.roulette;
 
+import me.omigo.spigotrpg.DatabaseHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

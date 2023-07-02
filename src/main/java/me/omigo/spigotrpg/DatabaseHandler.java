@@ -1,5 +1,6 @@
 package me.omigo.spigotrpg;
 
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -46,6 +47,8 @@ public class DatabaseHandler {
                     System.out.println("Inserting into db: " + item + " " + worth);
                 }
                 System.out.println("Inserted item values into items_worth table");
+
+                stmt.execute("CREATE TABLE IF NOT EXISTS roulettes (id INT auto_increment)");
 
                 /*String selectAllQuery = "SELECT * FROM players";
                 try (ResultSet rs = stmt.executeQuery(selectAllQuery)) {

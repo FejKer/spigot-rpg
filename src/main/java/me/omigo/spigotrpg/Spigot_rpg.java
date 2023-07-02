@@ -1,5 +1,6 @@
 package me.omigo.spigotrpg;
 
+import me.omigo.spigotrpg.roulette.RouletteCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
