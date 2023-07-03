@@ -42,14 +42,6 @@ public class DatabaseHandler {
                 System.out.println("Created table players");
                 stmt.execute("CREATE TABLE IF NOT EXISTS roulettes (id INT auto_increment, items VARCHAR(1024), itemValues VARCHAR(1024), winner VARCHAR(1024))");
                 System.out.println("Created table roulettes");
-                /*String selectAllQuery = "SELECT * FROM players";
-                try (ResultSet rs = stmt.executeQuery(selectAllQuery)) {
-                    while (rs.next()) {
-                        String uuid = rs.getString("uuid");
-                        String name = rs.getString("name");
-                        System.out.println("Player UUID: " + uuid + ", Name: " + name);
-                    }
-                }*/
             }
         } catch (SQLException e) {
             System.out.println("Could connect to database " + e.getMessage());

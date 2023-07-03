@@ -1,1 +1,12 @@
 database-name: "database-name"
+roulette-timer: 30
+roulette-diamond: 500
+roulette-iron-ingot: 150
+roulette-gold-ingot: 200
+roulette-emerald: 350
+roulette-coal: 50
+roulette-lapis-lazuli: 100
+roulette-redstone: 80
+roulette-netherite-ingot: 1000
+roulette-quartz: 120
+roulette-obsidian: 300
