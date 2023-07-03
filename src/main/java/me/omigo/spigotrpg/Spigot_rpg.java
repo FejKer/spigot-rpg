@@ -6,12 +6,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.sql.Connection;
 
 public final class Spigot_rpg extends JavaPlugin {
-
-    private Connection connection;
+    public static Spigot_rpg instance;
     private final DatabaseHandler databaseHandler = DatabaseHandler.instance;
 
     @Override
     public void onEnable() {
+        instance = this;
         System.out.println("Hello world from Spigot-Rpg");
         System.out.println("Registering listener");
         getServer().getPluginManager().registerEvents(new EventListener(), this);

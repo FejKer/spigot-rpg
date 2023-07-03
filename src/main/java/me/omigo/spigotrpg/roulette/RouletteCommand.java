@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.sql.SQLException;
+
 public class RouletteCommand implements CommandExecutor {
 
     private final DatabaseHandler databaseHandler = DatabaseHandler.instance;
@@ -22,6 +24,12 @@ public class RouletteCommand implements CommandExecutor {
                     sendItemsWorthToPlayer(player);
                 } else if ("join".equalsIgnoreCase(args[0])) {
                     rouletteHandler.joinRoulette(player);
+                } else if ("history".equalsIgnoreCase(args[0])) {
+                    try {
+                        rouletteHandler.sendHistoryToPlayer(player);
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                 } else {
                     player.sendMessage("Unknown subcommand. Use /roulette items or /roulette join.");
                 }
