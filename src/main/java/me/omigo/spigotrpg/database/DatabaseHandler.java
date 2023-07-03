@@ -1,4 +1,4 @@
-package me.omigo.spigotrpg;
+package me.omigo.spigotrpg.database;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bukkit.Material;
@@ -40,7 +40,7 @@ public class DatabaseHandler {
             try (Statement stmt = connection.createStatement()) {
                 stmt.execute("CREATE TABLE IF NOT EXISTS players (uuid VARCHAR(36), name VARCHAR(16))");
                 System.out.println("Created table players");
-                stmt.execute("CREATE TABLE IF NOT EXISTS roulettes (id INT auto_increment, items VARCHAR(1024), itemValues VARCHAR(1024), winner VARCHAR(1024))");
+                stmt.execute("CREATE TABLE IF NOT EXISTS roulettes (id INT auto_increment, items VARCHAR(1024), players VARCHAR(1024), winner VARCHAR(1024))");
                 System.out.println("Created table roulettes");
             }
         } catch (SQLException e) {

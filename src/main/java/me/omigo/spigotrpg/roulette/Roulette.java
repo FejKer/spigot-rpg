@@ -1,6 +1,6 @@
 package me.omigo.spigotrpg.roulette;
 
-import me.omigo.spigotrpg.DatabaseHandler;
+import me.omigo.spigotrpg.database.DatabaseHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

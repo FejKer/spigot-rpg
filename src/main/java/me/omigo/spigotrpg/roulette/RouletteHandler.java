@@ -1,7 +1,7 @@
 package me.omigo.spigotrpg.roulette;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import me.omigo.spigotrpg.DatabaseHandler;
+import me.omigo.spigotrpg.database.DatabaseHandler;
 import me.omigo.spigotrpg.Spigot_rpg;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

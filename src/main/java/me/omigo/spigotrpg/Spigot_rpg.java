@@ -1,9 +1,9 @@
 package me.omigo.spigotrpg;
 
+import me.omigo.spigotrpg.database.DatabaseHandler;
+import me.omigo.spigotrpg.listeners.EventListener;
 import me.omigo.spigotrpg.roulette.RouletteCommand;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.sql.Connection;
 
 public final class Spigot_rpg extends JavaPlugin {
     public static Spigot_rpg instance;
