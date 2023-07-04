@@ -15,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +26,7 @@ public class RouletteHandler {
     private static final ScheduledExecutorService EXECUTOR = Executors.newSingleThreadScheduledExecutor();
     public static RouletteHandler instance = new RouletteHandler();
     private static Roulette roulette = null;
+    public static Map<Player, Location> playerLocationMap = new HashMap<>();
 
     private void disposeRoulette() {
         System.out.println("Disposing roulette");
@@ -71,6 +74,12 @@ public class RouletteHandler {
                     System.out.println("Items: " + roulette.getItemList());
                     inv.setContents(roulette.getItemList().toArray(new ItemStack[0]));
                     disposeRoulette();
+                    playerLocationMap.put(winner, location);
+                    winner.sendMessage("Twoja skrzynka z wygraną zniknie za minutę.");
+                    Bukkit.getScheduler().runTaskLater(Spigot_rpg.instance, () -> {
+                        location.getBlock().setType(Material.AIR);
+                        playerLocationMap.remove(winner);
+                    }, 20 * 60);
                 });
             }, 30, TimeUnit.SECONDS);
         }
